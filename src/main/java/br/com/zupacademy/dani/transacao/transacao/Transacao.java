@@ -13,7 +13,7 @@ public class Transacao {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private BigDecimal valor;
-        @Embedded
+        @ManyToOne(cascade = CascadeType.PERSIST)
         private Estabelecimento estabelecimento;
         @ManyToOne(cascade = CascadeType.PERSIST)
         private Cartao cartao;

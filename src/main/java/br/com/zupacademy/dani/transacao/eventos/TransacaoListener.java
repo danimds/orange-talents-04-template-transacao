@@ -1,5 +1,7 @@
 package br.com.zupacademy.dani.transacao.eventos;
 
+import br.com.zupacademy.dani.transacao.cartao.Cartao;
+import br.com.zupacademy.dani.transacao.estabelecimento.Estabelecimento;
 import br.com.zupacademy.dani.transacao.transacao.EventoDeTransacao;
 import br.com.zupacademy.dani.transacao.transacao.Transacao;
 import br.com.zupacademy.dani.transacao.transacao.TransacaoRepository;
@@ -17,14 +19,13 @@ public class TransacaoListener {
     @Autowired
     private TransacaoRepository transacaoRepository;
 
-    public class ListenerDeTransacao {
-
         @KafkaListener(topics = "${spring.kafka.topic.transactions}")
         public void ouvir(EventoDeTransacao mensagem) {
             try {
                 logger.info("Nova transacao = {}", mensagem.toString());
                 Transacao transacao = mensagem.toModel();
                 transacaoRepository.save(transacao);
+                logger.info("Nova transação salva com id={}", transacao.getId());
 
             } catch (Exception e) {
                 logger.error("Não foi possivel salvar a transação");
@@ -32,5 +33,5 @@ public class TransacaoListener {
             }
         }
 
-    }
+
 }
