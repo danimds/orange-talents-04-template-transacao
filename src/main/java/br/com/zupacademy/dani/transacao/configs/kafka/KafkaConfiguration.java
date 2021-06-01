@@ -1,4 +1,4 @@
-package br.com.zupacademy.dani.transacao.configs;
+package br.com.zupacademy.dani.transacao.configs.kafka;
 import br.com.zupacademy.dani.transacao.transacao.EventoDeTransacao;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
